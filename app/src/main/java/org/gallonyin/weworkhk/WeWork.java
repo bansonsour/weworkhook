@@ -29,7 +29,7 @@ import de.robv.android.xposed.XposedHelpers;
  */
 
 public class WeWork {
-    private static final String TAG = "WeWork";
+    private static final String TAG = "WeWorkKKKKK";
 
     private ClassLoader classLoader;
 
@@ -79,6 +79,7 @@ public class WeWork {
                         break;
                     case "weworkdk_open":
                         isOpen = intent.getBooleanExtra("open", true);
+                        Log.e(TAG, "===========initReceiver() isOpen======" + isOpen);
                         break;
                 }
             }
@@ -95,6 +96,7 @@ public class WeWork {
         XposedHelpers.findAndHookMethod("android.app.Application", classLoader, "attach", Context.class, new XC_MethodHook() {
             @Override
             protected void afterHookedMethod(MethodHookParam param) throws Throwable {
+                Log.e(TAG, "===========afterHookedMethod()======");
                 Context context = (Context) param.args[0];
 
                 SharedPreferences sp = context.getSharedPreferences("hkWeWork", Context.MODE_PRIVATE);
@@ -105,6 +107,7 @@ public class WeWork {
                 hkGPS(classLoader);
                 hkPic(classLoader, sp);
                 initReceiver(context, sp);
+
             }
         });
     }
@@ -420,8 +423,8 @@ public class WeWork {
                         }
                     }
                 });
-
         for (Method method : LocationManager.class.getDeclaredMethods()) {
+
             if (method.getName().equals("requestLocationUpdates")
                     && !Modifier.isAbstract(method.getModifiers())
                     && Modifier.isPublic(method.getModifiers())) {
@@ -429,7 +432,7 @@ public class WeWork {
                     @Override
                     protected void beforeHookedMethod(MethodHookParam param) throws Throwable {
                         if (!isOpen) return;
-                        Log.d(TAG, "requestLocationUpdates");
+                        Log.d(TAG, "requestLocationUpdates==>" + param.args.length);
                         if (param.args.length >= 4 && (param.args[3] instanceof LocationListener)) {
 
                             LocationListener ll = (LocationListener) param.args[3];
