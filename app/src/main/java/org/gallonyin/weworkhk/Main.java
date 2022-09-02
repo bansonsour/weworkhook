@@ -21,6 +21,12 @@ public class Main implements IXposedHookLoadPackage {
     public void handleLoadPackage(XC_LoadPackage.LoadPackageParam lpparam) throws Throwable {
         try {
             XposedBridge.log("handleLoadPackage: " + lpparam.packageName + "    " + lpparam.processName);
+            
+            if (lpparam.packageName.equals("com.tencent.mm")) {
+                Log.d("Main", "----weixin---------");
+                new WeXinHook().start(lpparam.classLoader);
+                return;
+            }
 
             if (lpparam.packageName.equals("com.tencent.wework")) {
                 Log.d("Main", "----wework---------");
