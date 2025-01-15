@@ -105,13 +105,11 @@ public class WeXinHook {
     }
 
     private void hkGPS(final ClassLoader classLoader) {
-        //// 反classes11.dex
         Log.d(TAG, "=====hkGPS======: " + latitude + "#" + longtitude);
-        //com/tencent/map/geolocation/sapp/TencentLocationListener
         try {
-            final Class tencentLocationClazz = classLoader.loadClass("com.tencent.map.geolocation.sapp.TencentLocation");
+            final Class tencentLocationClazz = classLoader.loadClass("com.tencent.map.qywxgeolocation.TencentLocation");
 
-            XposedHelpers.findAndHookMethod(XposedHelpers.findClass("com.tencent.map.geolocation.sapp.TencentLocationListener", classLoader),
+            XposedHelpers.findAndHookMethod(XposedHelpers.findClass("zld$c", classLoader),
                     "onLocationChanged", tencentLocationClazz, int.class, String.class, new XC_MethodHook() {
 
                         @Override
@@ -211,9 +209,9 @@ public class WeXinHook {
                     });
 
             Log.d(TAG, "========================================================================");
-            final Class requestClazz = classLoader.loadClass("com.tencent.map.geolocation.sapp.TencentLocationRequest");
-            final Class listenerClazz = classLoader.loadClass("com.tencent.map.geolocation.sapp.TencentLocationListener");
-            XposedHelpers.findAndHookMethod(XposedHelpers.findClass("com.tencent.map.geolocation.sapp.TencentLocationManager", classLoader),
+            final Class requestClazz = classLoader.loadClass("com.tencent.map.qywxgeolocation.TencentLocationRequest");
+            final Class listenerClazz = classLoader.loadClass("com.tencent.map.qywxgeolocation.TencentLocationListener");
+            XposedHelpers.findAndHookMethod(XposedHelpers.findClass("com.tencent.map.qywxgeolocation.TencentLocationManager", classLoader),
                     "requestLocationUpdates", requestClazz, listenerClazz, new XC_MethodHook() {
 
                         @Override

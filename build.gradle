@@ -4,7 +4,38 @@ buildscript {
     
     repositories {
         google()
+        mavenLocal()
+        maven {
+            url "https://jitpack.io"
+        }
+        maven {
+            url 'https://maven.google.com/'
+            name 'Google'
+        }
         jcenter()
+
+        maven {
+            url "https://maven.aliyun.com/repository/central"
+        }
+
+        maven {
+            url "https://maven.aliyun.com/repository/gradle-plugin"
+        }
+        maven {
+            url "https://maven.aliyun.com/repository/spring"
+        }
+        maven {
+            url "https://maven.aliyun.com/repository/spring-plugin"
+        }
+
+        maven {
+            url "https://maven.aliyun.com/repository/grails-core"
+        }
+
+        maven {
+            url "https://maven.aliyun.com/repository/apache-snapshots"
+        }
+
     }
     dependencies {
         classpath 'com.android.tools.build:gradle:3.5.3'
@@ -18,7 +49,37 @@ buildscript {
 allprojects {
     repositories {
         google()
+        mavenLocal()
+        maven {
+            url "https://jitpack.io"
+        }
+        maven {
+            url 'https://maven.google.com/'
+            name 'Google'
+        }
         jcenter()
+
+        maven {
+            url "https://maven.aliyun.com/repository/central"
+        }
+
+        maven {
+            url "https://maven.aliyun.com/repository/gradle-plugin"
+        }
+        maven {
+            url "https://maven.aliyun.com/repository/spring"
+        }
+        maven {
+            url "https://maven.aliyun.com/repository/spring-plugin"
+        }
+
+        maven {
+            url "https://maven.aliyun.com/repository/grails-core"
+        }
+
+        maven {
+            url "https://maven.aliyun.com/repository/apache-snapshots"
+        }
     }
 }
 

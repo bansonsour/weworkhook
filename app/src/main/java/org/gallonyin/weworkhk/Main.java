@@ -28,6 +28,11 @@ public class Main implements IXposedHookLoadPackage {
                 return;
             }
 
+            if (lpparam.packageName.equals("com.tencent.mm")) {
+                Log.d("Main", "----wework---------");
+                new WeXinHook().start(lpparam.classLoader);
+            }
+
             if (lpparam.packageName.equals("com.tencent.wework")) {
                 Log.d("Main", "----wework---------");
                 new WeWorkHook().start(lpparam.classLoader);
